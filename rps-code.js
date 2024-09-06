@@ -1,3 +1,4 @@
+//Chooses a random value for the computer
 function getComputerChoice () {
 	let choice = Math.floor(Math.random() * 3);
 	if (choice === 0) {
@@ -11,6 +12,7 @@ function getComputerChoice () {
 	}
 }
 
+//Prompts user input for rock, paper or scissors
 function getHumanChoice () {
 	let choice = " "
 	while (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
@@ -26,6 +28,7 @@ function getHumanChoice () {
 	return choice;
 }
 
+//Plays a round of the game
 function playRound (choice1, choice2) {
 	roundsPlayed++;
 	if (choice1 === choice2) {
@@ -68,10 +71,14 @@ function playRound (choice1, choice2) {
 	}
 }
 
+//Plays out five rounds of the game and announces a winner
 function playGame() {
 	let compChoice = null;
 	let humanChoice = null;
 
+	losses = 0;
+	wins = 0;
+	roundsPlayed = 0;
 
 	while (roundsPlayed < 5 ) {
 		compChoice = getComputerChoice();
