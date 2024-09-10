@@ -1,17 +1,18 @@
 //Chooses a random value for the computer
 function getComputerChoice () {
 	let choice = Math.floor(Math.random() * 3);
+	let computerChoice = "rock";
 	if (choice === 0) {
-		return "rock";
+		computerChoice = "rock";
 	}
 	else if (choice === 1) {
-		return "paper";
+		computerChoice = "paper";
 	}
 	else {
-		return "scissors";
+		computerChoice = "scissors";
 	}
+	return computerChoice;
 }
-
 //Prompts user input for rock, paper or scissors
 function getHumanChoice () {
 	let choice = " "
@@ -33,42 +34,36 @@ function playRound (choice1, choice2) {
 	roundsPlayed++;
 	if (choice1 === choice2) {
 		console.log("It's a tie!");
-		return;
 	}
 	else if (choice1 === "rock" && choice2 === "paper") {
 		console.log("Paper beats rock, you lose this round!")
 		losses++;
-		return;
 	}
 	else if (choice1 === "rock" && choice2 === "scissors") {
 		console.log("Rock beats scissors, you win this round!")
 		wins++;
-		return;
 	}
 	else if (choice1 === "paper" && choice2 === "rock") {
 		console.log("Paper beats rock, you win this round!")
 		wins++;
-		return;
 	}
 	else if (choice1 === "paper" && choice2 === "scissors") {
 		console.log("Scissors beats paper, you lose this round!")
 		losses++;
-		return;
 	}
 	else if (choice1 === "scissors" && choice2 === "rock") {
 		console.log("Rock beats scissors, you lose this round!")
 		losses++;
-		return;
 	}
 	else if (choice1 === "scissors" && choice2 === "paper") {
 		console.log("Scissors beats paper, you win this round!")
 		wins++;
-		return;
 	}
 	else {
 		console.log("Error")
-		return;
 	}
+	let ele = document.getElementById("output_element");
+	ele.textContent = "Wins: "+wins+" Losses: "+losses
 }
 
 //Plays out five rounds of the game and announces a winner
@@ -101,5 +96,3 @@ function playGame() {
 let losses = 0;
 let wins = 0;
 let roundsPlayed = 0;
-
-playGame();
