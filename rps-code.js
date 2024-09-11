@@ -15,23 +15,26 @@ function getComputerChoice () {
 }
 //Prompts user input for rock, paper or scissors
 function getHumanChoice () {
-	let choice = " "
-	while (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
-		choice = prompt("Choose rock, paper, or scissors. The game is played five times, and then an overall winner is chosen. Check the console for results.");
-		choice = choice.toLowerCase();
-		if (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
-			console.log("Invalid option.");
-		}
-		else {
-			console.log(`You chose ${choice}!`);
-		}
+	let choice = "rock"
+	let button_pressed = event.target;
+
+	switch(button_pressed.id) {
+		case "rock-btn":
+			choice = "rock";
+			break;
+		case "paper-btn":
+			choice = "paper";
+			break;
+		case "scissors-btn":
+			choice = "scissors";
+			break;
 	}
+	
 	return choice;
 }
 
 //Plays a round of the game
 function playRound (choice1, choice2) {
-	roundsPlayed++;
 	if (choice1 === choice2) {
 		console.log("It's a tie!");
 	}
@@ -62,8 +65,9 @@ function playRound (choice1, choice2) {
 	else {
 		console.log("Error")
 	}
-	let ele = document.getElementById("output_element");
-	ele.textContent = "Wins: "+wins+" Losses: "+losses
+
+	let wins_ele = document.querySelector("#wins-display");
+	wins_ele.textContent = "Wins: "+wins+" Losses: "+losses
 }
 
 //Plays out five rounds of the game and announces a winner
@@ -71,28 +75,14 @@ function playGame() {
 	let compChoice = null;
 	let humanChoice = null;
 
-	losses = 0;
-	wins = 0;
-	roundsPlayed = 0;
+	compChoice = getComputerChoice();
+	humanChoice = getHumanChoice();
+	console.log(`The computer chose ${compChoice}.`)
+	playRound(humanChoice,compChoice);
 
-	while (roundsPlayed < 5 ) {
-		compChoice = getComputerChoice();
-		humanChoice = getHumanChoice();
-		console.log(`The computer chose ${compChoice}.`)
-		playRound(humanChoice,compChoice);
-	}
-
-	if (wins > losses) {
-		console.log("You win overall!");
-	}
-	else if (wins < losses) {
-		console.log("You lose overall!");
-	}
-	else {
-		console.log("It's a tie overall!");
-	}
 }
 
 let losses = 0;
 let wins = 0;
-let roundsPlayed = 0;
+const button_reader = document.querySelector("#button-container");
+button_reader.addEventListener("click", playGame);
