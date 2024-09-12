@@ -4,7 +4,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Rock, Paper, Scissors</title>
-	 <script src="rps-code.js" defer></script> 
+	<script src="rps-code.js" defer></script>
+	<link rel="stylesheet" href="rps-style.css" defer>
 </head>
 <body>
 	<div id="game-box">
@@ -17,11 +18,17 @@
 			</div>
 		</div>
 		<div id="choice-display">
-			<div id="your-display"></div>
-			<div id="comp-display"></div>
+			<div id="your-display">
+					<div class="player-text">Player</div>
+					<img id="your-pic" src="rock.png">
+			</div>
+			<div id="comp-display">
+				<div class="player-text">Computer</div>
+				<img id="comp-pic" src="paper.png">
+			</div>
 		</div>
 		<div id="wins-display"></div>
-		<div id="annoncement-display"></div>
+		<div id="announcement-display">Click an option to play!</div>
 	</div>
 </body>
 </html>
