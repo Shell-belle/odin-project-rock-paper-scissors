@@ -15,84 +15,98 @@ function getComputerChoice () {
 }
 //Prompts user input for rock, paper or scissors
 function getHumanChoice () {
-	let choice = " "
-	while (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
-		choice = prompt("Choose rock, paper, or scissors. The game is played five times, and then an overall winner is chosen. Check the console for results.");
-		choice = choice.toLowerCase();
-		if (choice !== "rock" && choice !== "paper" && choice !== "scissors") {
-			console.log("Invalid option.");
-		}
-		else {
-			console.log(`You chose ${choice}!`);
-		}
+	let choice = "rock"
+	let button_pressed = event.target;
+
+	switch(button_pressed.id) {
+		case "rock-btn":
+			choice = "rock";
+			break;
+		case "paper-btn":
+			choice = "paper";
+			break;
+		case "scissors-btn":
+			choice = "scissors";
+			break;
 	}
+	
 	return choice;
+}
+
+function getImage(choice) {
+	let src = "rock.png"
+
+	if (choice === "rock") {
+		src ="rock.png";
+	}
+	else if (choice === "paper") {
+		src = "paper.png";
+	}
+	else if (choice === "scissors") {
+		src = "scissors.png";
+	}
+	else {
+		console.log("Error")
+	}
+	return src;
 }
 
 //Plays a round of the game
 function playRound (choice1, choice2) {
-	roundsPlayed++;
+	let result_announcement = document.querySelector("#announcement-display");
+
 	if (choice1 === choice2) {
-		console.log("It's a tie!");
+		result_announcement.textContent = "It's a tie!";
 	}
 	else if (choice1 === "rock" && choice2 === "paper") {
-		console.log("Paper beats rock, you lose this round!")
+		result_announcement.textContent = "Paper beats rock, you lose this round!"
 		losses++;
 	}
 	else if (choice1 === "rock" && choice2 === "scissors") {
-		console.log("Rock beats scissors, you win this round!")
+		result_announcement.textContent = "Rock beats scissors, you win this round!"
 		wins++;
 	}
 	else if (choice1 === "paper" && choice2 === "rock") {
-		console.log("Paper beats rock, you win this round!")
+		result_announcement.textContent = "Paper beats rock, you win this round!"
 		wins++;
 	}
 	else if (choice1 === "paper" && choice2 === "scissors") {
-		console.log("Scissors beats paper, you lose this round!")
+		result_announcement.textContent = "Scissors beats paper, you lose this round!"
 		losses++;
 	}
 	else if (choice1 === "scissors" && choice2 === "rock") {
-		console.log("Rock beats scissors, you lose this round!")
+		result_announcement.textContent = "Rock beats scissors, you lose this round!"
 		losses++;
 	}
 	else if (choice1 === "scissors" && choice2 === "paper") {
-		console.log("Scissors beats paper, you win this round!")
+		result_announcement.textContent = "Scissors beats paper, you win this round!"
 		wins++;
 	}
 	else {
 		console.log("Error")
 	}
-	let ele = document.getElementById("output_element");
-	ele.textContent = "Wins: "+wins+" Losses: "+losses
+
+	let wins_ele = document.querySelector("#wins-display");
+	wins_ele.textContent = "Wins: "+wins+" Losses: "+losses
 }
 
 //Plays out five rounds of the game and announces a winner
 function playGame() {
 	let compChoice = null;
 	let humanChoice = null;
+	const your_pic = document.querySelector("#your-pic");
+	const comp_pic = document.querySelector("#comp-pic")
 
-	losses = 0;
-	wins = 0;
-	roundsPlayed = 0;
+	compChoice = getComputerChoice();
+	humanChoice = getHumanChoice();
+	your_pic.src = getImage(humanChoice);
+	comp_pic.src = getImage(compChoice);
+	console.log(`The computer chose ${compChoice}.`)
+	playRound(humanChoice,compChoice);
 
-	while (roundsPlayed < 5 ) {
-		compChoice = getComputerChoice();
-		humanChoice = getHumanChoice();
-		console.log(`The computer chose ${compChoice}.`)
-		playRound(humanChoice,compChoice);
-	}
-
-	if (wins > losses) {
-		console.log("You win overall!");
-	}
-	else if (wins < losses) {
-		console.log("You lose overall!");
-	}
-	else {
-		console.log("It's a tie overall!");
-	}
 }
 
 let losses = 0;
 let wins = 0;
-let roundsPlayed = 0;
+const button_reader = document.querySelector("#button-container");
+button_reader.addEventListener("click", playGame);

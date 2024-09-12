@@ -1,0 +1,88 @@
+* {
+	font-family: sans-serif;
+	color: rgb(249,250,248);
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: rgb(31,41,54);
+}
+
+#game-box {
+	background: rgb(61,133,243);
+	padding: .5em;
+	min-width: 60%;
+	border-radius: 1em;
+}
+
+#choice-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#choice-box div {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+#button-container {
+	display: flex;
+	gap: .5em;
+	margin-right: .5em;
+	margin-top: .5em;
+}
+
+button {
+	background: rgb(61,133,243);
+	border: solid rgb(249,250,248) 2px;
+	font-size: 18px;
+	border-radius: 5em;
+	padding: .5em;
+}
+
+button:hover {
+	background: rgb(60, 74, 120);
+	border-color: rgb(109,116,125);
+	color: rgb(109,116,125);
+}
+
+#choice-display {
+	display: flex;
+	background: rgb(249,250,248);
+	justify-content: space-around;
+	margin: .5em 0;
+	min-height: 200px;
+	border-radius: .5em;
+}
+
+.player-text {
+	text-align: center;
+	color: rgb(109,116,125);
+	margin-bottom: -1em;
+	padding-top: 1em; 
+}
+
+img {
+	height: 200px;
+	width: 200px;
+}
+
+#comp-pic {
+	transform: scaleX(-1);
+}
+
+#wins-display {
+	min-height: 1em;
+}
+
+#announcement-display {
+	font-size: 18px;
+	margin: .25em 0;
+}
